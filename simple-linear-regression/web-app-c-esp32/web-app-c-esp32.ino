@@ -1,5 +1,5 @@
 // Author: Erwin Ouyang, aiotedge.tech
-// Date  : 9 Jan 2020
+// Date  : 11 Jan 2020
 
 #include <SPIFFS.h>
 #include <WiFi.h>
@@ -9,6 +9,8 @@ const char* ssid = "Huawei-E5573";
 const char* password = "huaweie5573";
 
 AsyncWebServer server(80);
+int temp = 0;
+bool req_root = false;
 
 void setup()
 {
@@ -35,7 +37,8 @@ void setup()
 
   // Route for web page and libraries
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send(SPIFFS, "/index.html");
+    req_root = true;
+    request->send(SPIFFS, "/index.html", String(), false, processor);
   });
   server.on("/bootstrap.min.css", HTTP_GET, [](AsyncWebServerRequest *request) {
     request->send(SPIFFS, "/bootstrap.min.css");
@@ -43,21 +46,52 @@ void setup()
   server.on("/jquery-3.3.1.min.js", HTTP_GET, [](AsyncWebServerRequest *request) {
     request->send(SPIFFS, "/jquery-3.3.1.min.js");
   });
-  server.on("/bootstrap.min.js", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send(SPIFFS, "/bootstrap.min.js");
-  });
   server.on("/popper.min.js", HTTP_GET, [](AsyncWebServerRequest *request) {
     request->send(SPIFFS, "/popper.min.js");
   });
-  server.on("/tf.min.js", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send(SPIFFS, "/tf.min.js");
+  server.on("/bootstrap.min.js", HTTP_GET, [](AsyncWebServerRequest *request) {
+    request->send(SPIFFS, "/bootstrap.min.js");
   });
-
+  server.on("/predict", HTTP_GET, [](AsyncWebServerRequest *request) {
+    req_root = false;
+    if (request->params() == 1)
+    {
+      AsyncWebParameter* p = request->getParam(0);
+      if (p->name() == "temperature")
+      {
+        temp = p->value().toInt();
+      }
+    }
+    request->send(SPIFFS, "/index.html", String(), false, processor);
+  });
+  
   // Start server
   server.begin();
 }
  
 void loop()
 {  
+}
+
+// Replaces placeholder with LED state value
+String processor(const String& var)
+{
+  if (var == "RESULT")
+  {
+    if (req_root)
+      return String(0);
+    else
+      return predictNumberofUsers(temp);
+  }
+  return String();
+}
+
+String predictNumberofUsers(int temp)
+{
+  float theta_0 = 25;
+  float theta_1 = 1.25;
+  float h = theta_0 + theta_1*temp;
+
+  return String(round(h), 0);
 }
 
