@@ -1,14 +1,12 @@
+# aiotedge.tech
+
+Edge AI is an approach to process AI algorithms locally on a hardware device. This has some advantages, such as offline availability, processing latency, limit bandwidth and cellular data usage, security issues, etc. This capability makes it suitable for IoT devices.
+
+A combination of Artificial Intelligence (AI) and Internet of Things (IoT) is called Artificial Intelligence of Things (AIoT). AIoT at the edge processes AI algorithms locally on a hardware device instead of the cloud server.
+
+aiotedge.tech is a collection of tutorials and projects that start at the basics and take you through advanced topics. We provide tutorials and projects that covers all of the AIoT technology stack. All in one place from the AI algorithms down to the hardware device, such as ESP32, STM32, Raspberry Pi, etc.
+
 ## Donation
 If this project help you reduce time to develop, you can give me a cup of coffee :)
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/erwin168?locale.x=en_US)
-
-## License 
-
-Copyright (c) 2020 Erwin Ouyang
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
